@@ -1,4 +1,12 @@
-const {frutas, dinero} = require('./frutas')
+const http = require('http');
+const server = http.createServer((req, res) =>{
+    res.end('estoy respondiendo a tu solicitud')
+})
+const puerto = 3000;
+server.listen(puerto, ()=>{
+    console.log('escuchando solicitudes')
+})
+/*const {frutas, dinero} = require('./frutas')
 const cowsay = require("cowsay");
 {frutas.forEach(item =>{
     console.log(item)
