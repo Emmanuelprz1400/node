@@ -3,9 +3,13 @@ const app = express();
 
 const port = 3000;
 
+//motor de plantillas
+app.set('view engine', 'ejs');
+app.set('views',__dirname + '/views');
+
 
 app.get('/', (req, res)=>{
-    res.send('Mi respuesta desde express')
+    res.render("index", {titulo: "mi título dinámico"})
 });
 
 app.use(express.static(__dirname +"/public"))
@@ -16,11 +20,14 @@ app.listen(port,() => {
 })
 
 app.get("/servicios", (req, res)=>{
-    res.send('estás en la pág de servicios')
+    res.render("servicios", {tituloServicio: "mensaje dinámico de servicios"})
 })
+app.get((req, res,) => {
+    res.render("404", {titulo404: "404"})
 
-app.use((req, res,next) => {
-    res.status(404).sendFile(__dirname+"/public/404.htm")
+/*app.use((req, res, next) => {
+    res.status(404).render("404",{
+        titulo: "404"    })
 })
 /*const http = require('http');
 const server = http.createServer((req, res) =>{
@@ -60,4 +67,4 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
     console.log('Example app listening')
-});*/ 
+});*/ });
